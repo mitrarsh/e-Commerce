@@ -1,8 +1,11 @@
-import { Form, Link, redirect } from "react-router-dom";
+import { useContext } from "react";
+import { Form, Link } from "react-router-dom";
+import { redirect } from "react-router-dom";
 import { useAuth } from "../context/authContext";
 
-export async function handleSubmit() {
-  const { setToken } = useAuth();
+
+
+export async function action({ request }) {
   const data = await request.formData();
   const authData = {
     name: data.get("name"),
@@ -17,16 +20,18 @@ export async function handleSubmit() {
   //   if (!response.ok) throw new Error("Signup failed");
   // const resData = await response.json();
   // const token= resData.token;
-  // console.log("Token after signup:", token);
+  // console.log("Token after signup:", token); 
 
   const token = "fake-jwt-" + Math.random().toString(36).substring(2);
-  setToken(token);
-  localStorage.setItem("token", token);
+localStorage.setItem("token", token);  
+  return redirect("/"); ;
 
-  return redirect("/");
 }
 
+
+
 const SignUp = () => {
+
   return (
     <div className="SignUp">
       <div className="SignUp-pic">
@@ -37,10 +42,9 @@ const SignUp = () => {
           <h1>Create an account</h1>
           <p>Enter your details below</p>
           <Form
-            onSubmit={handleSubmit}
-            className="signUp-form"
-            //  method="post"
-          >
+          //  onSubmit={handleSubmit} 
+           className="signUp-form"
+           method="post">
             <div className="input-bar-form">
               <input
                 name="name"

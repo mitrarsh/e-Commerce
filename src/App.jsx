@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage";
 import RootLayout from "./pages/Layout";
 import Login from "./pages/Login";
 import ProductDetail from "./pages/ProductDetail";
+import SignUp , {action as authAction} from "./pages/SignUp";
 import ErrorPage from './pages/Error';
 import UserDashboard from "./pages/UserDashboard";
 import AuthProvider from "./context/authContext";
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
       { index: true, element: <HomePage /> },
       { path: "products/:id", element: <ProductDetail /> },
       { path: "bilboard-products/:id", element: <BilboardProductDetail /> },
-      { path: "sign-up", element: <SignUp /> },
+      { path: "sign-up", element: <SignUp />, action: authAction },
       { path: "login", element: <Login /> },
       { path: "user-dashboard", element: <UserDashboard /> },
     ],
