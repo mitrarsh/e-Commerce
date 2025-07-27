@@ -1,0 +1,484 @@
+{
+  "items": [
+    {
+      "id": "g92-gamepad-white",
+      "name": "Havic HV G-92 Gamepad",
+      "price": 192,
+      "inStock": true,
+      "rating": 4,
+      "reviews": 150,
+      "description": "PlayStation 5 Controller Skin. High quality vinyl with air channel adhesive for easy bubble-free install and mess-free removal. Pressure sensitive.",
+      "colours": [
+        "blue",
+        "red"
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "quantityAvailable": 2,
+      "image": "/assets/images/products/white-gamepad.svg",
+      "image2": "/assets/images/products/white-gamepa2.svg",
+      "type": "Electronics",
+      "imageSize": "width: 18rem; height: 18rem",
+      "category": "Gamepads",
+      "delivery": {
+        "freeDelivery": true,
+        "returnPolicy": "Free 30 Days Delivery Returns"
+      },
+      "discount": null,
+      "new": true
+    },
+    {
+      "id": "g92-gamepad-red",
+      "name": "Havit HV-G92 Gamepad",
+      "price": 120,
+      "originalPrice": 160,
+      "inStock": true,
+      "rating": 4.5,
+      "reviews": 88,
+      "description": "Dual vibration gamepad with ergonomic grip and responsive analog sticks. Plug and play USB connection.",
+      "colours": [
+        "red",
+        "black"
+      ],
+      "sizes": [],
+      "quantityAvailable": 10,
+      "image": "/assets/images/products/red-game-pad.svg",
+      "image2": "/assets/images/products/red-game-pad2.svg",
+      "type": "Electronics",
+      "category": "Gamepads",
+      "delivery": {
+        "freeDelivery": true,
+        "returnPolicy": "30-Day Free Return"
+      },
+      "discount": "40%"
+    },
+    {
+      "id": "ak-900-keyboard",
+      "name": "AK-900 Wired Keyboard",
+      "price": 960,
+      "originalPrice": 1160,
+      "inStock": true,
+      "rating": 3.5,
+      "reviews": 75,
+      "description": "Backlit mechanical keyboard with customizable RGB lighting, anti-ghosting keys, and ergonomic wrist rest.",
+      "colours": [
+        "black",
+        "rainbow"
+      ],
+      "sizes": [],
+      "quantityAvailable": 15,
+      "image": "/assets/images/products/keyboard.svg",
+      "image2": "/assets/images/products/keyboard2.svg",
+      "type": "Electronics",
+      "category": "Keyboards",
+      "delivery": {
+        "freeDelivery": true,
+        "returnPolicy": "Returns accepted within 30 days"
+      },
+      "discount": "35%"
+    },
+    {
+      "id": "ips-gaming-monitor",
+      "name": "IPS LCD Gaming Monitor",
+      "price": 370,
+      "originalPrice": 400,
+      "inStock": true,
+      "rating": 4.7,
+      "reviews": 99,
+      "description": "27-inch Full HD monitor with 144Hz refresh rate, IPS panel, and ultra-slim bezels. Perfect for gaming.",
+      "colours": [
+        "black"
+      ],
+      "sizes": [
+        "27-inch"
+      ],
+      "quantityAvailable": 6,
+      "image": "/assets/images/products/monitor.svg",
+      "image2": "/assets/images/products/monitor2.svg",
+      "type": "Electronics",
+      "category": "Monitors",
+      "delivery": {
+        "freeDelivery": true,
+        "returnPolicy": "30-Day Money Back Guarantee"
+      },
+      "discount": "30%",
+      "new": true
+    },
+    {
+      "id": "s-series-chair",
+      "name": "S-Series Comfort Chair",
+      "price": 375,
+      "originalPrice": 400,
+      "inStock": true,
+      "rating": 4.6,
+      "reviews": 99,
+      "description": "Ergonomic home/office chair with breathable fabric, wooden legs, and cushioned support for long sitting hours.",
+      "colours": [
+        "gray",
+        "beige"
+      ],
+      "sizes": [
+        "Standard"
+      ],
+      "quantityAvailable": 20,
+      "image": "/assets/images/products/chair.svg",
+      "image2": "/assets/images/products/chair2.svg",
+      "type": "Home & Lifestyle",
+      "category": "Furniture",
+      "delivery": {
+        "freeDelivery": true,
+        "returnPolicy": "Free returns within 15 days"
+      },
+      "discount": "25%"
+    },
+    {
+      "id": "north-coat",
+      "name": "The north coat",
+      "price": 260,
+      "originalPrice": 360,
+      "inStock": true,
+      "rating": 5,
+      "reviews": 65,
+      "description": "Warm and stylish winter coat with waterproof fabric and insulated lining.",
+      "colours": [
+        "red"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "quantityAvailable": 12,
+      "image": "/assets/images/products/coat.svg",
+      "image2": "/assets/images/products/coat2.svg",
+      "type": "Men's Fashion",
+      "category": "Clothing",
+      "delivery": {
+        "freeDelivery": true,
+        "returnPolicy": "Free 15 Days Return"
+      },
+      "discount": "28%"
+    },
+    {
+      "id": "gucci-duffle-bag",
+      "name": "Gucci duffle bag",
+      "price": 960,
+      "originalPrice": 1160,
+      "inStock": true,
+      "rating": 4.5,
+      "reviews": 65,
+      "description": "Luxury Gucci duffle bag with iconic GG canvas, leather trim, and spacious interior.",
+      "colours": [
+        "brown",
+        "green",
+        "red"
+      ],
+      "sizes": [
+        "Standard"
+      ],
+      "quantityAvailable": 5,
+      "image": "/assets/images/products/bag.svg",
+      "image2": "/assets/images/products/bag2.svg",
+      "type": "Woman's Fashion",
+      "category": "Bags",
+      "delivery": {
+        "freeDelivery": true,
+        "returnPolicy": "30-Day Return"
+      },
+      "discount": "17%",
+      "new": true
+    },
+    {
+      "id": "rgb-liquid-cooler",
+      "name": "RGB liquid CPU Cooler",
+      "price": 160,
+      "originalPrice": 170,
+      "inStock": true,
+      "rating": 5,
+      "reviews": 65,
+      "description": "High-performance RGB CPU liquid cooler with dual fans and RGB lighting for gaming rigs.",
+      "colours": [
+        "black",
+        "RGB"
+      ],
+      "sizes": [
+        "Standard"
+      ],
+      "quantityAvailable": 8,
+      "image": "/assets/images/products/stereo.svg",
+      "image2": "/assets/images/products/stereo2.svg",
+      "type": "Electronics",
+      "category": "Cooling",
+      "delivery": {
+        "freeDelivery": true,
+        "returnPolicy": "Return within 30 days"
+      },
+      "discount": "6%",
+      "new": true
+    },
+    {
+      "id": "small-bookshelf",
+      "name": "Small BookSelf",
+      "price": 360,
+      "originalPrice": 360,
+      "inStock": true,
+      "rating": 5,
+      "reviews": 65,
+      "description": "Compact wooden bookshelf suitable for small spaces, with elegant finish and sturdy design.",
+      "colours": [
+        "brown",
+        "oak"
+      ],
+      "sizes": [
+        "Small"
+      ],
+      "quantityAvailable": 10,
+      "image": "/assets/images/products/shelf.svg",
+      "image2": "/assets/images/products/shelf2.svg",
+      "type": "Home & Lifestyle",
+      "category": "Furniture",
+      "delivery": {
+        "freeDelivery": true,
+        "returnPolicy": "15-Day Return Policy"
+      },
+      "discount": null
+    },
+    {
+      "id": "cesar-dog-food",
+      "name": "Breed Dry Dog Food",
+      "price": 100,
+      "inStock": true,
+      "rating": 3.8,
+      "reviews": 35,
+      "description": "Nutritious dry dog food for adult small breed dogs. Contains 12 pouches.",
+      "colours": [],
+      "sizes": [
+        "12-pack"
+      ],
+      "quantityAvailable": 30,
+      "image": "/assets/images/products/dog-food.svg",
+      "image2": "/assets/images/products/dog-food2.svg",
+      "type": "Groceries & Pets",
+      "category": "Pet Supplies",
+      "delivery": {
+        "freeDelivery": true,
+        "returnPolicy": "7-Day Return"
+      },
+      "discount": null
+    },
+    {
+      "id": "canon-eos-camera",
+      "name": "CANON EOS DSLR Camera",
+      "price": 360,
+      "inStock": true,
+      "rating": 4,
+      "reviews": 95,
+      "description": "High-quality DSLR camera ideal for photography and video recording. Includes lens kit.",
+      "colours": [
+        "black"
+      ],
+      "sizes": [
+        "Standard"
+      ],
+      "quantityAvailable": 12,
+      "image": "/assets/images/products/camera.svg",
+      "image2": "/assets/images/products/camera2.svg",
+      "type": "Electronics",
+      "category": "Cameras",
+      "delivery": {
+        "freeDelivery": true,
+        "returnPolicy": "30-Day Return"
+      },
+      "discount": null
+    },
+    {
+      "id": "asus-fhd-laptop",
+      "name": "ASUS FHD Gaming Laptop",
+      "price": 700,
+      "inStock": true,
+      "rating": 5,
+      "reviews": 325,
+      "description": "Powerful gaming laptop with Full HD display, dedicated GPU, and backlit keyboard.",
+      "colours": [
+        "black"
+      ],
+      "sizes": [
+        "15.6-inch"
+      ],
+      "quantityAvailable": 8,
+      "image": "/assets/images/products/laptop.svg",
+      "image2": "/assets/images/products/laptop2.svg",
+      "type": "Electronics",
+      "category": "Electronics",
+      "delivery": {
+        "freeDelivery": true,
+        "returnPolicy": "Free returns within 30 days"
+      },
+      "discount": null,
+      "new": true
+    },
+    {
+      "id": "curology-set",
+      "name": "Curology Product Set",
+      "price": 500,
+      "inStock": true,
+      "rating": 4,
+      "reviews": 145,
+      "description": "Complete skincare routine kit for acne-prone and sensitive skin types.",
+      "colours": [
+        "purple",
+        "white"
+      ],
+      "sizes": [
+        "Standard"
+      ],
+      "quantityAvailable": 20,
+      "image": "/assets/images/products/products.svg",
+      "image2": "/assets/images/products/products2.svg",
+      "type": "Health & Beauty",
+      "category": "Health & Beauty",
+      "delivery": {
+        "freeDelivery": true,
+        "returnPolicy": "15-Day Money Back Guarantee"
+      },
+      "discount": null
+    },
+    {
+      "id": "kids-electric-car",
+      "name": "Kids Electric Car",
+      "price": 960,
+      "inStock": true,
+      "rating": 5,
+      "reviews": 65,
+      "description": "Battery-powered ride-on car for kids, realistic design with working headlights.",
+      "colours": [
+        "red"
+      ],
+      "sizes": [
+        "One Size"
+      ],
+      "quantityAvailable": 5,
+      "image": "/assets/images/products/car.svg",
+      "image2": "/assets/images/products/car2.svg",
+      "type": "Baby's & Toys",
+      "category": "Toys",
+      "delivery": {
+        "freeDelivery": true,
+        "returnPolicy": "Return in 10 days"
+      },
+      "discount": null
+    },
+    {
+      "id": "zoom-soccer-cleats",
+      "name": "Jr. Zoom Soccer Cleats",
+      "price": 1160,
+      "inStock": true,
+      "rating": 5,
+      "reviews": 35,
+      "description": "High-performance junior soccer cleats with firm ground traction and lightweight material.",
+      "colours": [
+        "yellow",
+        "black",
+        "red"
+      ],
+      "sizes": [
+        "28",
+        "29",
+        "30",
+        "31"
+      ],
+      "quantityAvailable": 18,
+      "image": "/assets/images/products/sneakers.svg",
+      "image2": "/assets/images/products/sneakers2.svg",
+      "type": "Sports & Outdoor",
+      "category": "Footwear",
+      "delivery": {
+        "freeDelivery": true,
+        "returnPolicy": "30-Day Free Return"
+      },
+      "discount": null,
+      "new": true
+    },
+    {
+      "id": "gp11-gamepad",
+      "name": "GP11 Shooter USB Gamepad",
+      "price": 660,
+      "inStock": true,
+      "rating": 4.5,
+      "reviews": 55,
+      "description": "Ergonomic USB gamepad with responsive buttons, analog sticks, and vibration feedback.",
+      "colours": [
+        "black",
+        "red"
+      ],
+      "sizes": [
+        "Standard"
+      ],
+      "quantityAvailable": 10,
+      "image": "/assets/images/products/black-gamepad.svg",
+      "image2": "/assets/images/products/black-gamepad2.svg",
+      "type": "Electronics",
+      "category": "Gamepads",
+      "delivery": {
+        "freeDelivery": true,
+        "returnPolicy": "14-Day Return Policy"
+      },
+      "discount": null
+    },
+    {
+      "id": "quilted-jacket",
+      "name": "Quilted Satin Jacket",
+      "price": 660,
+      "inStock": true,
+      "rating": 4.5,
+      "reviews": 55,
+      "description": "Stylish quilted satin jacket with ribbed cuffs and zip closure. Ideal for winter fashion.",
+      "colours": [
+        "green",
+        "orange",
+        "black"
+      ],
+      "sizes": [
+        "M",
+        "L",
+        "XL"
+      ],
+      "quantityAvailable": 9,
+      "image": "/assets/images/products/green-coat.svg",
+      "image2": "/assets/images/products/green-coat2.svg",
+      "type": "Men's Fashion",
+      "category": "Clothing",
+      "delivery": {
+        "freeDelivery": true,
+        "returnPolicy": "Return within 15 days"
+      },
+      "discount": null
+    }
+  ],
+  "info": [
+    {
+      "id": "e985",
+      "name": "میترا روشنفکر",
+      "emailOrPhone": "lilulitt",
+      "password": "oi90u98y90"
+    },
+    {
+      "id": "f6d3",
+      "name": "میترا روشنفکر",
+      "emailOrPhone": "xnvnv",
+      "password": "vnxvnxbbfz"
+    },
+    {
+      "id": "f7c3",
+      "name": "fdhgfgh",
+      "emailOrPhone": "hshs",
+      "password": "dhgfhdfxh"
+    }
+  ]
+}
