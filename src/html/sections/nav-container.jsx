@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { ItemContext } from "../../context/itemsContext";
 import { useAuth } from "../../context/authContext";
+import { ItemContext } from "../../context/itemsContext";
 
 const NavContainer = ({ onDeleteFromCart }) => {
   const navLinks = [
@@ -14,6 +14,7 @@ const NavContainer = ({ onDeleteFromCart }) => {
   const { likedItems, cartItems } = useContext(ItemContext);
   const [cartVisible, setCartVisible] = useState(false);
   const [wishlistVisible, setWishlistVisible] = useState(false);
+  const [accountVisible, setAccountVisible] = useState(false);
 
   const uniqueCartItems = [
     ...new Map(
@@ -22,7 +23,7 @@ const NavContainer = ({ onDeleteFromCart }) => {
         .map((item) => [item.id, item])
     ).values(),
   ];
-  const{token, logout}=useAuth();
+  const { token, logout } = useAuth();
 
   return (
     <div className="navbar-container">
@@ -136,8 +137,41 @@ const NavContainer = ({ onDeleteFromCart }) => {
               )}
             </div>
           ) : null}
-          {token?(<button onClick={logout}>logout</button>):null}
         </div>
+        {token ? (
+          <div className="nav-icon-container">
+            <img
+              src="/assets/images/icons/user.svg"
+              alt=""
+              className="nav-icon"
+              onClick={()=>setAccountVisible(!accountVisible)}
+            />
+            {accountVisible ? (
+              <div className="dropdown">
+                <Link className="cart-item-details" to>
+                  <img src="/assets/images/icons/user (1).svg" alt="" />
+                  <h3>Manage My Account</h3>
+                </Link>
+                <Link className="cart-item-details">
+                  <img src="/assets/images/icons/icon-mallbag.svg" alt="" />
+                  <h3>My Order</h3>
+                </Link>
+                <Link className="cart-item-details">
+                  <img src="/assets/images/icons/icon-cancel.svg" alt="" />
+                  <h3>Account Dropdoen</h3>
+                </Link>
+                <Link className="cart-item-details">
+                  <img src="/assets/images/icons/Icon-Reviews.svg" alt="" />
+                  <h3>My Reviews</h3>
+                </Link>
+                <Link className="cart-item-details" onClick={logout}>
+                  <img src="/assets/images/icons/Icon-logout.svg" alt="" />
+                  <h3>Logout</h3>
+                </Link>
+              </div>
+            ) : null}
+          </div>
+        ) : null}
       </div>
     </div>
   );

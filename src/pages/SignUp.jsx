@@ -1,7 +1,4 @@
-import { useContext } from "react";
-import { Form, Link } from "react-router-dom";
-import { redirect } from "react-router-dom";
-import { useAuth } from "../context/authContext";
+import { Form, Link, redirect, useActionData } from "react-router-dom";
 
 
 
@@ -12,6 +9,14 @@ export async function action({ request }) {
     emailOrPhone: data.get("emailOrPhone"),
     password: data.get("password"),
   };
+  const existingUsers= JSON.parse(localStorage.getItem("users"))|| [];
+  const userExists= existingUsers.some((u)=>u.emailOrPhone=== authData.emailOrPhone)
+  if(userExists){return {error:"This user already exists."};
+
+};
+  existingUsers.push(authData);
+  localStorage.setItem("users",JSON.stringify(existingUsers))
+
   const response = await fetch("http://localhost:3000/info", {
     method: "POST",
     headers: { "content-type": "application/json" },
@@ -24,13 +29,17 @@ export async function action({ request }) {
 
   const token = "fake-jwt-" + Math.random().toString(36).substring(2);
 localStorage.setItem("token", token);  
-  return redirect("/"); ;
+window.dispatchEvent(new Event("auth-changed"));//notify react that token changed// We create a custom browser event when we set the token in the action(). Then, in AuthProvider, we listen for that event and update the token state.
+  return redirect("/");
 
 }
 
 
 
 const SignUp = () => {
+
+
+  const actionData = useActionData();  // <-- This gets { error: "This user already exists." } //actionData gets whatever action returns
 
   return (
     <div className="SignUp">
@@ -73,6 +82,10 @@ const SignUp = () => {
                 minLength={8}
               />
             </div>
+            {actionData?.error && (
+  <p style={{ color: "red", marginTop: "10px" }}>{actionData.error}</p>
+)}
+
             <button className="btn-fullWidth red-btn" type="submit">
               Create Account
             </button>

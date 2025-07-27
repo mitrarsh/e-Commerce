@@ -15,14 +15,13 @@ const AuthProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem("token");
     setToken(null);
-    setUser(null);
+    setUser(null); 
   };
   useEffect(()=>{
-      const savedToken= localStorage.getItem("token");
-      if(savedToken){
-          setToken(savedToken)
-      }
-  },[token])
+  const handler = () => setToken(localStorage.getItem("token")); // // Listen for auth changes from actions
+  window.addEventListener("auth-changed", handler);
+  return () => window.removeEventListener("auth-changed", handler);
+  },[])
 
   return (
     <AuthContext.Provider
