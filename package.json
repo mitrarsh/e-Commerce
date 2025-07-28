@@ -11,6 +11,7 @@
     "server": "json-server --watch src/items.json --port 3000"
   },
   "dependencies": {
+    "@tanstack/react-query-devtools": "^5.83.0",
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",
     "express": "^5.1.0",

@@ -373,6 +373,32 @@ cursor: pointer;
 display: block;
 font-size: 1.6rem;
   }
+  .cancel{
+      padding: 1.6rem 3rem;
+  border-radius: 4px;
+  width: 3rem;
+  height: 5.6rem;
+  outline: none;
+  border: none;
+cursor: pointer;
+display: block;
+font-size: 1.6rem;
+background-color: white;
+  }
+  .save{
+color: white;
+
+    padding: 1.6rem 4.8rem;
+  border-radius: 4px;
+  width: 23.4rem;
+  height: 5.6rem;
+  outline: none;
+  border: none;
+cursor: pointer;
+display: block;
+font-size: 1.6rem;  background-color: #DB4444;
+
+  }
   .btn-fullWidth{
 color: white;
   padding: 1.6rem 4.8rem;
@@ -425,6 +451,7 @@ display: block;
 }
 .btn--red{
   background-color: #DB4444;
+  color: white;
 }
 /* text-block */
 .white-text-block{
@@ -1283,4 +1310,91 @@ font-weight: 500;
   margin-bottom: 1rem;
   cursor: pointer;
   z-index: 2;
+}
+.account{
+    margin:7rem  15rem;
+}
+
+.account-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.account-sidebar-option h3 , li{
+ font-size: 1.6rem;
+
+ cursor: pointer;
+}
+.account-sidebar-option h3{
+ margin: 2rem 0 ;
+ font-weight: 500;
+
+}
+.account-sidebar-option li{
+ opacity: 50%;
+ margin-left: 3rem;
+  margin-bottom: 1rem;
+}
+.account-sidebar-option li:hover, li:active{
+  color: #DB4444;
+}
+
+.account-content{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 63rem;
+}
+.account-sidebar{
+  width: 30%;
+}
+
+.account-form{
+  padding: 4rem 7rem;
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  box-shadow: 0px 1px 13px 0px rgba(0, 0, 0, 0.05);
+gap: 3rem;
+  /* justify-content: space-between; */
+}
+.account-form h2{
+font-size: 2rem;
+font-weight: 500;
+color: rgba(219, 68, 68, 1);
+}
+
+.account-input h3{
+font-size: 1.6rem;
+}
+.account-user{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 4rem;
+}
+.account-input{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+.account-input-bar{
+  width: 100%;
+  justify-content: start;
+}
+.account-input-bar input{
+  width: 100%;
+}
+.account-form-btns{
+  display: flex;
+  justify-content:end;
+  gap: 5rem;
+}
+.welcome span{font-size: 1.4rem;}
+.path Link{font-size: 1.4rem;}
+.account-header{
+  margin-bottom: 7rem
 }

@@ -1,9 +1,11 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ItemContext } from "../context/itemsContext";
+import { useAuth } from "../context/authContext";
 
 const Login = () => {
   const { info, setInfo, sendInfo } = useContext(ItemContext);
+  const {currentUser,setCurrentUser} = useAuth();
   const [error, setError] = useState(null)
   const navigate = useNavigate();
 
@@ -21,13 +23,17 @@ const Login = () => {
     if (!user) {
      return setError("Invalid email, phone number, or password");
     }
-    const token = "fake-jwt-" + Math.random().toString(36).substring(2);
-    localStorage.setItem("token", token);
-    window.dispatchEvent(new Event("auth-changed")); //notify react that token changed// We create a custom browser event when we set the token in the action(). Then, in AuthProvider, we listen for that event and update the token state.
-    return navigate("/");
-  }
 
-  console.log(info);
+setCurrentUser(user);
+localStorage.setItem('currentUser', JSON.stringify(currentUser))
+
+const token = "fake-jwt-" + Math.random().toString(36).substring(2);
+localStorage.setItem("token", token);
+window.dispatchEvent(new Event("auth-changed")); //notify react that token changed// We create a custom browser event when we set the token in the action(). Then, in AuthProvider, we listen for that event and update the token state.
+return navigate("/");
+}
+
+
 
   return (
     <div className="SignUp">

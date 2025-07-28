@@ -1,42 +1,52 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(() => {
+    const savedUser = localStorage.getItem("currentUser");
+    return savedUser ? savedUser : null;
+  });
+
   const [token, setToken] = useState(() => localStorage.getItem("token"));
-  const logoutTimerRef=useRef(null)
+  const logoutTimerRef = useRef(null);
 
   // const login = (userInfo) => {
   //   const fakeToken = "fake-jwt-" + Math.random().toString(36).substring(2);
-  //   setUser(userInfo);
+  //   setCurrentUser(userInfo);
   //   setToken(fakeToken);
   //   localStorage.setItem("token", fakeToken);
   // };
 
   const logout = () => {
-    clearTimeout(logoutTimerRef.current)
+    clearTimeout(logoutTimerRef.current);
     localStorage.removeItem("token");
     setToken(null);
-    setUser(null); 
+    setCurrentUser(null);
   };
-  useEffect(()=>{
-
-    if(token){
+  useEffect(() => {
+    if (token) {
       clearTimeout(logoutTimerRef.current);
-      logoutTimerRef.current= setTimeout(()=>{logout()}, 60*60*1000)}
-      else{clearTimeout(logoutTimerRef.current)}
-    return ()=>clearTimeout(logoutTimerRef.current)
-  },[token])
+      logoutTimerRef.current = setTimeout(() => {
+        logout(), useNavigate("/");
+      }, 60 * 60 * 1000);
+    } else {
+      clearTimeout(logoutTimerRef.current);
+    }
+    return () => {
+      clearTimeout(logoutTimerRef.current);
+    };
+  }, [token, logout]);
 
-  useEffect(()=>{
-  const handler = () => setToken(localStorage.getItem("token")); // // Listen for auth changes from actions
-  window.addEventListener("auth-changed", handler);
-  return () => window.removeEventListener("auth-changed", handler);
-  },[])
+  useEffect(() => {
+    const handler = () => setToken(localStorage.getItem("token")); // // Listen for auth changes from actions
+    window.addEventListener("auth-changed", handler);
+    return () => window.removeEventListener("auth-changed", handler);
+  }, []);
 
   return (
     <AuthContext.Provider
-      value={{ user, setToken, setUser, token, logout }}
+      value={{ currentUser, setToken, setCurrentUser, token, logout }}
     >
       {children}
     </AuthContext.Provider>
