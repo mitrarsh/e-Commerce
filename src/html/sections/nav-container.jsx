@@ -148,7 +148,7 @@ const NavContainer = ({ onDeleteFromCart }) => {
             />
             {accountVisible ? (
               <div className="dropdown">
-                <Link className="cart-item-details" to>
+                <Link className="cart-item-details" to={'user-account'}>
                   <img src="/assets/images/icons/user (1).svg" alt="" />
                   <h3>Manage My Account</h3>
                 </Link>

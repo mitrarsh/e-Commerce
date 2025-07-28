@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useSubmit } from "react-router-dom";
 import Footer from "../html/sections/Footer";
 import NavContainer from "../html/sections/nav-container";
 import { ItemContext } from "../context/itemsContext";
@@ -6,6 +6,7 @@ import { useContext } from "react";
 
 const RootLayout = () => {
   const { items, cartItems, setCartItems } = useContext(ItemContext);
+
 
   const handleRemoveFromCart = (item) => {
     const index = cartItems.findIndex((cartItem) => cartItem.id === item.id);
@@ -17,6 +18,7 @@ const RootLayout = () => {
       setCartItems(cartItems.filter((cartItem) => cartItem.id !== item.id));
     }
   };
+
   return (
     <div>
       <>

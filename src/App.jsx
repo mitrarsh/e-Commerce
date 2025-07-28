@@ -7,9 +7,9 @@ import HomePage from "./pages/HomePage";
 import RootLayout from "./pages/Layout";
 import Login from "./pages/Login";
 import ProductDetail from "./pages/ProductDetail";
-import SignUp , {action as authAction} from "./pages/SignUp";
+import SignUp , {action as authAction, checkAuthLoader} from "./pages/SignUp";
 import ErrorPage from './pages/Error';
-import UserDashboard from "./pages/UserDashboard";
+import UserDashboard from "./pages/UserAccountrafce";
 import AuthProvider from "./context/authContext";
 
 const items = itemsData.items;
@@ -25,7 +25,7 @@ const router = createBrowserRouter([
       { path: "bilboard-products/:id", element: <BilboardProductDetail /> },
       { path: "sign-up", element: <SignUp />, action: authAction },
       { path: "login", element: <Login /> },
-      { path: "user-dashboard", element: <UserDashboard /> },
+      { path: "user-account", element: <UserDashboard />, loader: checkAuthLoader},
     ],
   },
 ]);

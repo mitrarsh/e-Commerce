@@ -34,7 +34,10 @@ window.dispatchEvent(new Event("auth-changed"));//notify react that token change
 
 }
 
-
+export const checkAuthLoader=()=>{
+  const token = localStorage.getItem('token');
+  if(!token){return redirect ('/login')}
+}
 
 const SignUp = () => {
 
