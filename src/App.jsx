@@ -1,22 +1,20 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import {
-  QueryClient,
-  QueryClientProvider,
-} from "@tanstack/react-query";
 
 import "./App.css";
 import AuthProvider from "./context/authContext";
 import ItemContextProvider from "./context/itemsContext";
 import itemsData from "./items.json";
 import BilboardProductDetail from "./pages/BilboardProductDetail";
+import Dummy from "./pages/Dummy";
 import ErrorPage from "./pages/Error";
 import HomePage from "./pages/HomePage";
 import RootLayout from "./pages/Layout";
 import Login from "./pages/Login";
 import ProductDetail from "./pages/ProductDetail";
+import SearchResults from "./pages/SearchResults";
 import SignUp, { action as authAction, checkAuthLoader } from "./pages/SignUp";
 import UserDashboard from "./pages/UserAccount";
-import Dummy from './pages/Dummy';
 
 const items = itemsData.items;
 const queryClient = new QueryClient();
@@ -37,6 +35,9 @@ const router = createBrowserRouter([
         element: <UserDashboard />,
         loader: checkAuthLoader,
       },
+      {
+        path: "/search-results", element: <SearchResults items={items}/>,
+      },
     ],
   },
 ]);
@@ -45,9 +46,7 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <ItemContextProvider>
-          <RouterProvider router={router}>
-            
-          </RouterProvider>
+          <RouterProvider router={router}></RouterProvider>
         </ItemContextProvider>
       </AuthProvider>
     </QueryClientProvider>

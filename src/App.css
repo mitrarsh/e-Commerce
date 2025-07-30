@@ -1398,3 +1398,8 @@ font-size: 1.6rem;
 .account-header{
   margin-bottom: 7rem
 }
+
+/* ///////search-results-pag */
+.search-results-page{
+      margin:7rem  15rem;
+}

@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import { ItemContext } from "../../context/itemsContext";
+import SearchBar from './../components/SearchBar';
 
 const NavContainer = ({ onDeleteFromCart }) => {
   const navLinks = [
@@ -19,6 +20,8 @@ const NavContainer = ({ onDeleteFromCart }) => {
     const isOpen = openDropboxId === id;
     isOpen ? setOpenDropboxId(null) : setOpenDropboxId(id);
   }
+
+  const {items} = useContext(ItemContext);
 
   const uniqueCartItems = [
     ...new Map(
@@ -47,20 +50,13 @@ const NavContainer = ({ onDeleteFromCart }) => {
         </div>
       </div>
       <div className="nav-options">
-        <div className="search-bar">
-          <input
-            className="search-input"
-            type="text"
-            placeholder="What are you looking for?"
-          />
-          <img src="/assets/images/icons/search.svg" alt="" />
-        </div>
+        <SearchBar items={items}/>
         <div
           className="nav-icon-container"
           id="like"
           onClick={() => {
             // setWishlistVisible(!wishlistVisible);
-            handleOpen("like")
+            handleOpen("like");
           }}
         >
           {likedItems.length === 0 ? (
@@ -76,7 +72,7 @@ const NavContainer = ({ onDeleteFromCart }) => {
             </div>
           )}
           <AnimatePresence>
-            {openDropboxId==="like" ? (
+            {openDropboxId === "like" ? (
               <motion.div
                 className="dropdown"
                 initial={{ y: -30, opacity: 0 }}
@@ -107,8 +103,7 @@ const NavContainer = ({ onDeleteFromCart }) => {
           className="nav-icon-container"
           onClick={() => {
             // setCartVisible(!cartVisible);
-            handleOpen("cart")
-
+            handleOpen("cart");
           }}
         >
           {cartItems.length === 0 ? (
@@ -124,7 +119,7 @@ const NavContainer = ({ onDeleteFromCart }) => {
             </div>
           )}
           <AnimatePresence>
-            {openDropboxId==="cart" ? (
+            {openDropboxId === "cart" ? (
               <motion.div
                 className="dropdown"
                 id="cart"
@@ -169,14 +164,13 @@ const NavContainer = ({ onDeleteFromCart }) => {
               src="/assets/images/icons/user.svg"
               alt=""
               className="nav-icon"
-              onClick={() => 
+              onClick={() =>
                 // setAccountVisible(!accountVisible)
-            handleOpen("account")
-
+                handleOpen("account")
               }
             />
             <AnimatePresence>
-              {openDropboxId==="account" ? (
+              {openDropboxId === "account" ? (
                 <motion.div
                   className="dropdown"
                   initial={{ y: -30, opacity: 0 }}
