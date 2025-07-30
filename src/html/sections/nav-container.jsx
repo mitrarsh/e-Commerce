@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from "framer-motion";
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
@@ -12,9 +13,12 @@ const NavContainer = ({ onDeleteFromCart }) => {
   ];
   const [clickedIndex, setClickedIndex] = useState(null);
   const { likedItems, cartItems } = useContext(ItemContext);
-  const [cartVisible, setCartVisible] = useState(false);
-  const [wishlistVisible, setWishlistVisible] = useState(false);
-  const [accountVisible, setAccountVisible] = useState(false);
+
+  const [openDropboxId, setOpenDropboxId] = useState();
+  function handleOpen(id) {
+    const isOpen = openDropboxId === id;
+    isOpen ? setOpenDropboxId(null) : setOpenDropboxId(id);
+  }
 
   const uniqueCartItems = [
     ...new Map(
@@ -53,8 +57,10 @@ const NavContainer = ({ onDeleteFromCart }) => {
         </div>
         <div
           className="nav-icon-container"
+          id="like"
           onClick={() => {
-            setWishlistVisible(!wishlistVisible);
+            // setWishlistVisible(!wishlistVisible);
+            handleOpen("like")
           }}
         >
           {likedItems.length === 0 ? (
@@ -69,30 +75,40 @@ const NavContainer = ({ onDeleteFromCart }) => {
               </div>
             </div>
           )}
-          {wishlistVisible ? (
-            <div className="dropdown">
-              <h3>My Wishlist</h3>
-              {likedItems.length === 0 ? (
-                <p className="empty-cart">Your wishlist is empty</p>
-              ) : (
-                likedItems.map((item) => {
-                  return (
-                    <ul key={item.id} className="cart-item">
-                      <li className="cart-item-details">
-                        <h4>{item.name}</h4>
-                        <h4>${item.price}</h4>
-                      </li>
-                    </ul>
-                  );
-                })
-              )}
-            </div>
-          ) : null}
+          <AnimatePresence>
+            {openDropboxId==="like" ? (
+              <motion.div
+                className="dropdown"
+                initial={{ y: -30, opacity: 0 }}
+                exit={{ y: -30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+              >
+                <h3>My Wishlist</h3>
+                {likedItems.length === 0 ? (
+                  <p className="empty-cart">Your wishlist is empty</p>
+                ) : (
+                  likedItems.map((item) => {
+                    return (
+                      <ul key={item.id} className="cart-item">
+                        <li className="cart-item-details">
+                          <h4>{item.name}</h4>
+                          <h4>${item.price}</h4>
+                        </li>
+                      </ul>
+                    );
+                  })
+                )}
+              </motion.div>
+            ) : null}
+          </AnimatePresence>
         </div>
         <div
+          id="cart"
           className="nav-icon-container"
           onClick={() => {
-            setCartVisible(!cartVisible);
+            // setCartVisible(!cartVisible);
+            handleOpen("cart")
+
           }}
         >
           {cartItems.length === 0 ? (
@@ -107,69 +123,89 @@ const NavContainer = ({ onDeleteFromCart }) => {
               </div>
             </div>
           )}
-          {cartVisible ? (
-            <div className="dropdown">
-              <h3>My Cart</h3>
-              {cartItems.length === 0 ? (
-                <p className="empty-cart">Your cart is empty</p>
-              ) : (
-                uniqueCartItems.map((item) => {
-                  const quantity = cartItems
-                    .filter((i) => i.id === item.id)
-                    .reduce((sum, i) => sum + i.quantity, 0);
+          <AnimatePresence>
+            {openDropboxId==="cart" ? (
+              <motion.div
+                className="dropdown"
+                id="cart"
+                initial={{ y: -30, opacity: 0 }}
+                exit={{ y: -30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+              >
+                <h3>My Cart</h3>
+                {cartItems.length === 0 ? (
+                  <p className="empty-cart">Your cart is empty</p>
+                ) : (
+                  uniqueCartItems.map((item) => {
+                    const quantity = cartItems
+                      .filter((i) => i.id === item.id)
+                      .reduce((sum, i) => sum + i.quantity, 0);
 
-                  return (
-                    <ul key={item.id} className="cart-item">
-                      <li className="cart-item-details">
-                        <h4>{item.name}</h4>
-                        <h4>x{quantity}</h4>
-                        <h4>${quantity * item.price}</h4>
-                        <p
-                          onClick={() => onDeleteFromCart(item)}
-                          style={{ cursor: "pointer" }}
-                        >
-                          🗑️
-                        </p>
-                      </li>
-                    </ul>
-                  );
-                })
-              )}
-            </div>
-          ) : null}
+                    return (
+                      <ul key={item.id} className="cart-item">
+                        <motion.li className="cart-item-details" layout>
+                          <h4>{item.name}</h4>
+                          <h4>x{quantity}</h4>
+                          <h4>${quantity * item.price}</h4>
+                          <p
+                            onClick={() => onDeleteFromCart(item)}
+                            style={{ cursor: "pointer" }}
+                          >
+                            🗑️
+                          </p>
+                        </motion.li>
+                      </ul>
+                    );
+                  })
+                )}
+              </motion.div>
+            ) : null}
+          </AnimatePresence>
         </div>
         {token ? (
           <div className="nav-icon-container">
             <img
+              id="account"
               src="/assets/images/icons/user.svg"
               alt=""
               className="nav-icon"
-              onClick={()=>setAccountVisible(!accountVisible)}
+              onClick={() => 
+                // setAccountVisible(!accountVisible)
+            handleOpen("account")
+
+              }
             />
-            {accountVisible ? (
-              <div className="dropdown">
-                <Link className="cart-item-details" to={'user-account'}>
-                  <img src="/assets/images/icons/user (1).svg" alt="" />
-                  <h3>Manage My Account</h3>
-                </Link>
-                <Link className="cart-item-details">
-                  <img src="/assets/images/icons/icon-mallbag.svg" alt="" />
-                  <h3>My Order</h3>
-                </Link>
-                <Link className="cart-item-details">
-                  <img src="/assets/images/icons/icon-cancel.svg" alt="" />
-                  <h3>Account Dropdoen</h3>
-                </Link>
-                <Link className="cart-item-details">
-                  <img src="/assets/images/icons/Icon-Reviews.svg" alt="" />
-                  <h3>My Reviews</h3>
-                </Link>
-                <Link className="cart-item-details" onClick={logout}>
-                  <img src="/assets/images/icons/Icon-logout.svg" alt="" />
-                  <h3>Logout</h3>
-                </Link>
-              </div>
-            ) : null}
+            <AnimatePresence>
+              {openDropboxId==="account" ? (
+                <motion.div
+                  className="dropdown"
+                  initial={{ y: -30, opacity: 0 }}
+                  exit={{ y: -30, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                >
+                  <Link className="cart-item-details" to={"user-account"}>
+                    <img src="/assets/images/icons/user (1).svg" alt="" />
+                    <h3>Manage My Account</h3>
+                  </Link>
+                  <Link className="cart-item-details">
+                    <img src="/assets/images/icons/icon-mallbag.svg" alt="" />
+                    <h3>My Order</h3>
+                  </Link>
+                  <Link className="cart-item-details">
+                    <img src="/assets/images/icons/icon-cancel.svg" alt="" />
+                    <h3>Account Dropdoen</h3>
+                  </Link>
+                  <Link className="cart-item-details">
+                    <img src="/assets/images/icons/Icon-Reviews.svg" alt="" />
+                    <h3>My Reviews</h3>
+                  </Link>
+                  <Link className="cart-item-details" onClick={logout}>
+                    <img src="/assets/images/icons/Icon-logout.svg" alt="" />
+                    <h3>Logout</h3>
+                  </Link>
+                </motion.div>
+              ) : null}
+            </AnimatePresence>
           </div>
         ) : null}
       </div>

@@ -16,6 +16,7 @@ import Login from "./pages/Login";
 import ProductDetail from "./pages/ProductDetail";
 import SignUp, { action as authAction, checkAuthLoader } from "./pages/SignUp";
 import UserDashboard from "./pages/UserAccount";
+import Dummy from './pages/Dummy';
 
 const items = itemsData.items;
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
       { path: "bilboard-products/:id", element: <BilboardProductDetail /> },
       { path: "sign-up", element: <SignUp />, action: authAction },
       { path: "login", element: <Login /> },
+      { path: "dummy", element: <Dummy /> },
       {
         path: "/user-account",
         element: <UserDashboard />,

@@ -29,7 +29,7 @@ const AuthProvider = ({ children }) => {
       clearTimeout(logoutTimerRef.current);
       logoutTimerRef.current = setTimeout(() => {
         logout(), useNavigate("/");
-      }, 60 * 60 * 1000);
+      }, 60*60 * 1000);
     } else {
       clearTimeout(logoutTimerRef.current);
     }
