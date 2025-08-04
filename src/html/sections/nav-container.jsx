@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import { ItemContext } from "../../context/itemsContext";
@@ -21,6 +21,8 @@ const NavContainer = ({ onDeleteFromCart }) => {
     isOpen ? setOpenDropboxId(null) : setOpenDropboxId(id);
   }
 
+
+
   const {items} = useContext(ItemContext);
 
   const uniqueCartItems = [
@@ -31,6 +33,23 @@ const NavContainer = ({ onDeleteFromCart }) => {
     ).values(),
   ];
   const { token, logout } = useAuth();
+
+  const dropdownRef = useRef(null);
+
+    useEffect(() => {
+    const handleClickOutside = (event) => {
+
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setOpenDropboxId(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className="navbar-container">
@@ -75,6 +94,7 @@ const NavContainer = ({ onDeleteFromCart }) => {
             {openDropboxId === "like" ? (
               <motion.div
                 className="dropdown"
+                ref={dropdownRef}
                 initial={{ y: -30, opacity: 0 }}
                 exit={{ y: -30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -122,6 +142,7 @@ const NavContainer = ({ onDeleteFromCart }) => {
             {openDropboxId === "cart" ? (
               <motion.div
                 className="dropdown"
+                ref={dropdownRef}
                 id="cart"
                 initial={{ y: -30, opacity: 0 }}
                 exit={{ y: -30, opacity: 0 }}
@@ -173,6 +194,7 @@ const NavContainer = ({ onDeleteFromCart }) => {
               {openDropboxId === "account" ? (
                 <motion.div
                   className="dropdown"
+                  ref={dropdownRef}
                   initial={{ y: -30, opacity: 0 }}
                   exit={{ y: -30, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
