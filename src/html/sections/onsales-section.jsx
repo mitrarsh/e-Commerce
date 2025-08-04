@@ -68,11 +68,11 @@ const OnsaleSection = ({ onAddToCart, CountDown }) => {
                     <div className="icon icon-whitebg cover-icon cover-icon-quick-view">
                       <img src="src\assets\icons\Quick View.svg" alt="" />
                     </div>
-                  </Link>
                   <div className="cover-tag tag-discount">-{item.discount}</div>
                   <div className="cover-image">
                     <img src={item.image} alt="" />
                   </div>
+                  </Link>
                   <button className="add-btn" onClick={() => onAddToCart(item)}>
                     Add To Cart
                   </button>

@@ -1,12 +1,12 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ItemContext } from "../context/itemsContext";
 import { useAuth } from "../context/authContext";
+import { ItemContext } from "../context/itemsContext";
 
 const Login = () => {
   const { info, setInfo, sendInfo } = useContext(ItemContext);
-  const {currentUser,setCurrentUser} = useAuth();
-  const [error, setError] = useState(null)
+  const { currentUser, setCurrentUser } = useAuth();
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   function handleSubmit(event) {
@@ -21,19 +21,19 @@ const Login = () => {
     );
 
     if (!user) {
-     return setError("Invalid email, phone number, or password");
+      return setError("Invalid email, phone number, or password");
     }
 
-setCurrentUser(user);
-localStorage.setItem('currentUser', JSON.stringify(currentUser))
+    setCurrentUser(user);
+    console.log("user:", user);
+    console.log("JSON.stringify(user):", JSON.stringify(user));
+    localStorage.setItem("currentUser", JSON.stringify(user));
 
-const token = "fake-jwt-" + Math.random().toString(36).substring(2);
-localStorage.setItem("token", token);
-window.dispatchEvent(new Event("auth-changed")); //notify react that token changed// We create a custom browser event when we set the token in the action(). Then, in AuthProvider, we listen for that event and update the token state.
-return navigate("/");
-}
-
-
+    const token = "fake-jwt-" + Math.random().toString(36).substring(2);
+    localStorage.setItem("token", token);
+    window.dispatchEvent(new Event("auth-changed")); //notify react that token changed// We create a custom browser event when we set the token in the action(). Then, in AuthProvider, we listen for that event and update the token state.
+    return navigate("/");
+  }
 
   return (
     <div className="SignUp">
@@ -64,7 +64,9 @@ return navigate("/");
                 minLength={8}
               />
             </div>
-            {error?(<p style={{color: "red",marginTop: "10px" }}>{error}</p>):null}
+            {error ? (
+              <p style={{ color: "red", marginTop: "10px" }}>{error}</p>
+            ) : null}
             <div className="login-btn">
               <button className="btn btn-red-small" type="submit">
                 Log in

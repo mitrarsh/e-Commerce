@@ -66,10 +66,10 @@ const Bestseller = () => {
                     <div className="icon icon-whitebg cover-icon cover-icon-quick-view">
                       <img src="src\assets\icons\Quick View.svg" alt="" />
                     </div>
-                  </Link>
                   <div className="cover-image">
                     <img src={item.image} alt="" />
                   </div>
+                  </Link>
                 </div>
                 <h2>{item.name}</h2>
                 <div className="card-price">

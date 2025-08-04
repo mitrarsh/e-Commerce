@@ -61,13 +61,13 @@ const AllProducts = ({ onAddToCart }) => {
                     <div className="icon icon-whitebg cover-icon cover-icon-quick-view">
                       <img src="src\assets\icons\Quick View.svg" alt="" />
                     </div>
-                  </Link>
                   {item.new ? (
                     <div className="cover-tag tag-new">New</div>
                   ) : null}
                   <div className="cover-image">
                     <img src={item.image} />
                   </div>
+                  </Link>
                   <button onClick={() => onAddToCart(item)} className="add-btn">
                     Add To Cart
                   </button>
