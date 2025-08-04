@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import ItemLike from "./../html/components/ItemLike";
 import StarRating from "./../html/components/StartsRating";
 
@@ -50,6 +50,7 @@ const SearchResults = ({ items }) => {
           <div className="item-card">
             <div className="cover">
               <ItemLike item={item} />
+              <Link to={`/products/${item.id}`}>
               <div className="icon icon-whitebg cover-icon cover-icon-quick-view">
                 <img src="src\assets\icons\Quick View.svg" alt="" />
               </div>
@@ -57,6 +58,7 @@ const SearchResults = ({ items }) => {
               <div className="cover-image">
                 <img src={item.image} alt="" />
               </div>
+              </Link>
               <button className="add-btn">Add To Cart</button>
             </div>
             <h2>{item.name}</h2>
