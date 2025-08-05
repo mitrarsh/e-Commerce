@@ -19,17 +19,17 @@ const CategoriesSection = () => {
     }
   };
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setFade(true);
-  //     setTimeout(() => {
-  //       setActiveDot((prev) => (prev === 2 ? 0 : prev + 1));
-  //       setFade(false);
-  //     }, 500);
-  //   }, 5000);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFade(true);
+      setTimeout(() => {
+        setActiveDot((prev) => (prev === 2 ? 0 : prev + 1));
+        setFade(false);
+      }, 500);
+    }, 5000);
 
-  //   return () => clearInterval(interval); //React calls this when the component unmounts or re-renders (if dependencies had changed).
-  // }, []);
+    return () => clearInterval(interval); //React calls this when the component unmounts or re-renders (if dependencies had changed).
+  }, []);
 
   return (
     <div className="categories-section">
