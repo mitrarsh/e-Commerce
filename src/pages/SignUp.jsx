@@ -38,6 +38,10 @@ export const checkAuthLoader=()=>{
   const token = localStorage.getItem('token');
   if(!token){return redirect ('/login')}
 }
+export const checkLoggedinLoader=()=>{
+  const token = localStorage.getItem('token');
+  if(token){return redirect ('/')}
+}
 
 const SignUp = () => {
 

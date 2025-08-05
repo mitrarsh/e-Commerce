@@ -12,6 +12,8 @@ const NavContainer = ({ onDeleteFromCart }) => {
     { label: "About", link: "/about" },
     { label: "Sign Up", link: "/sign-up" },
   ];
+  const loggedinNavlinks= [...navLinks.slice(0,3)]
+  
   const [clickedIndex, setClickedIndex] = useState(null);
   const { likedItems, cartItems } = useContext(ItemContext);
 
@@ -56,7 +58,9 @@ const NavContainer = ({ onDeleteFromCart }) => {
       <div className="nav">
         <img src="/assets/images/icons/Logo.svg" alt="" />
         <div className="nav-links">
-          {navLinks.map((l, index) => (
+          {
+          token?
+          (loggedinNavlinks.map((l, index) => (
             <Link
               key={index}
               to={l.link}
@@ -65,7 +69,18 @@ const NavContainer = ({ onDeleteFromCart }) => {
             >
               {l.label}
             </Link>
-          ))}
+          )))
+          :
+          (navLinks.map((l, index) => (
+            <Link
+              key={index}
+              to={l.link}
+              onClick={() => setClickedIndex(index)}
+              className={clickedIndex === index ? "link-clicked" : ""}
+            >
+              {l.label}
+            </Link>
+          )))}
         </div>
       </div>
       <div className="nav-options">

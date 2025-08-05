@@ -13,7 +13,7 @@ import RootLayout from "./pages/Layout";
 import Login from "./pages/Login";
 import ProductDetail from "./pages/ProductDetail";
 import SearchResults from "./pages/SearchResults";
-import SignUp, { action as authAction, checkAuthLoader } from "./pages/SignUp";
+import SignUp, { action as authAction, checkAuthLoader, checkLoggedinLoader } from "./pages/SignUp";
 import UserDashboard from "./pages/UserAccount";
 
 const items = itemsData.items;
@@ -27,8 +27,8 @@ const router = createBrowserRouter([
       { index: true, element: <HomePage /> },
       { path: "products/:id", element: <ProductDetail /> },
       { path: "bilboard-products/:id", element: <BilboardProductDetail /> },
-      { path: "sign-up", element: <SignUp />, action: authAction },
-      { path: "login", element: <Login /> },
+      { path: "sign-up", element: <SignUp />, action: authAction, loader: checkLoggedinLoader},
+      { path: "login", element: <Login />, loader: checkLoggedinLoader},
       { path: "dummy", element: <Dummy /> },
       {
         path: "/user-account",
