@@ -247,7 +247,7 @@ p {
   gap: 1rem;
   align-items: center;
   justify-content: center;
-  width: 24.3rem;
+  width: 25rem;
   height: 3.8rem;
   background-color: var(--clr-secondary-2);
   border-radius: 0.4rem;
@@ -255,7 +255,7 @@ p {
 .search-input{
   border: none;
   background-color: transparent;
-  
+  width: 100%;
   outline: none;
 
 }
