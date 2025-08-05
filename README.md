@@ -1,7 +1,7 @@
  E-Commerce Web App
 A fully responsive modern e-commerce website built with [React.js], featuring product browsing, cart functionality, user authentication, and integration with a mock backend.
 
-![Preview](public\assets\images\icons\preview.jpg)
+![Preview](public\assets\images\icons\preview.svg)
 
 🎨 Figma Design
 [View Figma Design](https://www.figma.com/design/MAxEHkpsOZsPXdOvCYRWuW/Full-E-Commerce-Website-UI-UX-Design--Community-?node-id=1-3&p=f&t=npFunQzFGfJiYe2y-0)

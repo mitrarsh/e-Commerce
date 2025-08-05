@@ -19,17 +19,17 @@ const CategoriesSection = () => {
     }
   };
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setFade(true);
-      setTimeout(() => {
-        setActiveDot((prev) => (prev === 2 ? 0 : prev + 1));
-        setFade(false);
-      }, 500);
-    }, 5000);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setFade(true);
+  //     setTimeout(() => {
+  //       setActiveDot((prev) => (prev === 2 ? 0 : prev + 1));
+  //       setFade(false);
+  //     }, 500);
+  //   }, 5000);
 
-    return () => clearInterval(interval); //React calls this when the component unmounts or re-renders (if dependencies had changed).
-  }, []);
+  //   return () => clearInterval(interval); //React calls this when the component unmounts or re-renders (if dependencies had changed).
+  // }, []);
 
   return (
     <div className="categories-section">
@@ -145,7 +145,7 @@ const CategoriesSection = () => {
               </Link>
             </div>
             <img
-            style={{width:"30rem", height: "30rem", margin:"2rem"}}
+            style={{width:"49.6rem", height: "30.2rem"}}
               src="public\assets\images\icons\headphone-sony.svg"
               alt=""
             />
@@ -179,7 +179,7 @@ const CategoriesSection = () => {
               </Link>
             </div>
             <img
-            style={{width:"30rem", height: "30rem", margin:"2rem"}}
+            style={{width:"49.6rem", height: "35.2rem"}}
               src="public\assets\images\icons\nike.svg"
               alt=""
             />
