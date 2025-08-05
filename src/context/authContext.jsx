@@ -21,6 +21,7 @@ const AuthProvider = ({ children }) => {
   const logout = () => {
     clearTimeout(logoutTimerRef.current);
     localStorage.removeItem("token");
+    localStorage.removeItem("currentUser");
     setToken(null);
     setCurrentUser(null);
   };

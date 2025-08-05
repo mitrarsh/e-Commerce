@@ -15,6 +15,7 @@ import ProductDetail from "./pages/ProductDetail";
 import SearchResults from "./pages/SearchResults";
 import SignUp, { action as authAction, checkAuthLoader, checkLoggedinLoader } from "./pages/SignUp";
 import UserDashboard from "./pages/UserAccount";
+import Wishlist from './pages/Wishlist';
 
 const items = itemsData.items;
 const queryClient = new QueryClient();
@@ -35,9 +36,9 @@ const router = createBrowserRouter([
         element: <UserDashboard />,
         loader: checkAuthLoader,
       },
-      {
-        path: "/search-results", element: <SearchResults items={items}/>,
-      },
+      {path: "/search-results", element: <SearchResults items={items}/>,},
+      {path: "/wishlist", element: <Wishlist items={items}/>,},
+
     ],
   },
 ]);

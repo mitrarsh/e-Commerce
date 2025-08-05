@@ -354,6 +354,12 @@ p {
   color: var(--clr-text-2);
 }
 /* btns */
+.wishlist-btn{
+  width:27rem;
+  height: 4.1rem;;
+cursor: pointer;
+ border-radius: 4px;
+}
 .add-btn{
   width:27rem;
   height: 4.1rem;
@@ -1402,4 +1408,27 @@ font-size: 1.6rem;
 /* ///////search-results-pag */
 .search-results-page{
       margin:7rem  15rem;
+}
+
+/* /////////wishlist-page */
+.wishlist-page{
+        margin:7rem  15rem;
+}
+.wishlist-heading{
+  margin-bottom: 5rem;
+}
+.wishlist-btn{
+  width:27rem;
+  height: 4.1rem;;
+cursor: pointer;
+ border-radius: 4px;
+ background-color: white;
+border: 1px solid rgba(0, 0, 0, 0.5);
+}
+.wishlist-header{
+  display: flex;
+  justify-content: space-between;
+}
+.emty-msg{
+  text-align: center;
 }

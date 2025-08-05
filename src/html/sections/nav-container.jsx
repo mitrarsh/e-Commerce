@@ -114,17 +114,19 @@ const NavContainer = ({ onDeleteFromCart }) => {
                 exit={{ y: -30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
               >
-                <h3>My Wishlist</h3>
+                <Link to={"/wishlist"}><h3>My Wishlist</h3></Link>
                 {likedItems.length === 0 ? (
                   <p className="empty-cart">Your wishlist is empty</p>
                 ) : (
                   likedItems.map((item) => {
                     return (
                       <ul key={item.id} className="cart-item">
+                        <Link to={`/products/${item.id}`}>
                         <li className="cart-item-details">
                           <h4>{item.name}</h4>
                           <h4>${item.price}</h4>
                         </li>
+                        </Link>
                       </ul>
                     );
                   })

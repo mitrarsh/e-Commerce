@@ -132,7 +132,7 @@ const UserAccount = () => {
             </ul>
           </div>
           <div className="account-sidebar-option">
-            <h3>My WishList</h3>
+            <Link to={'/wishlist'}><h3>My WishList</h3></Link>
           </div>
         </div>
         <Form className="account-form" onSubmit={handleSubmit}>
