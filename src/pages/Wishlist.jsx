@@ -4,10 +4,22 @@ import { Link } from "react-router-dom";
 import { ItemContext } from "../context/itemsContext";
 import ItemLike from "./../html/components/ItemLike";
 import StarRating from "./../html/components/StartsRating";
+import { q } from "framer-motion/client";
 
 const Wishlist = ({ items }) => {
   if (!items) return <p>Loading items...</p>;
   const { setLikedItems, likedItems } = useContext(ItemContext);
+  const { cartItems, setCartItems } = useContext(ItemContext);
+
+  const handleAddAllToCart = ()=>{
+    if(likedItems){
+      for (let i of likedItems){
+            setCartItems(prev=>prev.some(item=>item.id===i.id)? prev: [...prev, i])
+      }
+      setLikedItems([])
+    }
+  }
+  
 
   const containerVariants = {
     hidden: {},
@@ -30,7 +42,8 @@ const Wishlist = ({ items }) => {
         <h3 className="wishlist-heading">
         Wishlist {likedItems.length !== 0 ? `(${likedItems.length})` : null}
       </h3>
-      <button className="wishlist-btn">Move All to Cart</button>
+      <button className="wishlist-btn"
+      onClick={handleAddAllToCart}>Move All to Cart</button>
       </div>
       {likedItems.length===0? (<p className="emty-msg">Your wishlist is empty.</p>):
       <motion.div
