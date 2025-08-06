@@ -4,9 +4,20 @@ import { ItemContext } from "../../context/itemsContext";
 
 const CategoriesSection = () => {
   const [activeDot, setActiveDot] = useState(0);
-  const { bilboardProducts } = useContext(ItemContext);
+  const { bilboardProducts,items } = useContext(ItemContext);
   const item = bilboardProducts[5];
   const [fade, setFade] = useState(false);
+
+
+const categories = [];
+
+for (let item of items) {
+  if (!categories.includes(item.type)) {
+    categories.push(item.type);
+  }
+}
+
+
   const handleDotClick = (idx) => {
     if (activeDot === idx) return;
     else {
@@ -35,51 +46,7 @@ const CategoriesSection = () => {
     <div className="categories-section">
       <div className="categories">
         <ul>
-          <li>
-            <a href="">
-              <span className="category-link-content">
-                Woman's Fashion
-                <img
-                  src="src/assets/icons/dropdownblack.svg"
-                  alt=""
-                  className="dropdown-icon"
-                />
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="">
-              <span className="category-link-content">
-                Men's Fashion
-                <img
-                  src="src/assets/icons/dropdownblack.svg"
-                  alt=""
-                  className="dropdown-icon"
-                />
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="">Electronics</a>
-          </li>
-          <li>
-            <a href="">Home & Lifestyle</a>
-          </li>
-          <li>
-            <a href="">Medicine</a>
-          </li>
-          <li>
-            <a href="">Sports & Outdoor</a>
-          </li>
-          <li>
-            <a href="">Baby's & Toys</a>
-          </li>
-          <li>
-            <a href="">Groceries & Pets</a>
-          </li>
-          <li>
-            <a href="">Health & Beauty</a>
-          </li>
+          {categories.map((category,index)=><Link to={`category/${category}`} key={index}><li>{category}</li></Link>)}
         </ul>
       </div>
 

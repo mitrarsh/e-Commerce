@@ -16,6 +16,7 @@ import SearchResults from "./pages/SearchResults";
 import SignUp, { action as authAction, checkAuthLoader, checkLoggedinLoader } from "./pages/SignUp";
 import UserDashboard from "./pages/UserAccount";
 import Wishlist from './pages/Wishlist';
+import Category from "./pages/Category";
 
 const items = itemsData.items;
 const queryClient = new QueryClient();
@@ -27,10 +28,10 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: "products/:id", element: <ProductDetail /> },
+      { path: "category/:category", element: <Category items={items}/> },
       { path: "bilboard-products/:id", element: <BilboardProductDetail /> },
       { path: "sign-up", element: <SignUp />, action: authAction, loader: checkLoggedinLoader},
       { path: "login", element: <Login />, loader: checkLoggedinLoader},
-      { path: "dummy", element: <Dummy /> },
       {
         path: "/user-account",
         element: <UserDashboard />,
