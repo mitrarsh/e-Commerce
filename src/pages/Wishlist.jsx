@@ -8,6 +8,7 @@ import { q } from "framer-motion/client";
 
 const Wishlist = ({ items }) => {
   if (!items) return <p>Loading items...</p>;
+
   const { setLikedItems, likedItems } = useContext(ItemContext);
   const { cartItems, setCartItems } = useContext(ItemContext);
 
@@ -21,6 +22,7 @@ const Wishlist = ({ items }) => {
   }
   
 
+
   const containerVariants = {
     hidden: {},
     show: {
@@ -29,6 +31,15 @@ const Wishlist = ({ items }) => {
       },
     },
   };
+
+    const handleAddToCart = (item) => {
+    setCartItems([
+      ...cartItems,
+      { id: item.id, name: item.name, price: item.price, quantity: 1, color: item.colours[0], size: item.sizes[0]},
+    ]);
+    setLikedItems(likedItems.filter(i=>i.id!==item.id))
+  };
+
 
   const itemVariants = {
     hidden: { opacity: 0, scale: 0.95 },
@@ -76,7 +87,7 @@ const Wishlist = ({ items }) => {
                     <img src={item.image} alt="" />
                   </div>
                 </Link>
-                <button className="add-btn">Add To Cart</button>
+                <button className="add-btn" onClick={()=>handleAddToCart(item)}>Add To Cart</button>
               </div>
               <h2>{item.name}</h2>
               <div className="card-price">

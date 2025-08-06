@@ -2,11 +2,13 @@ import { motion } from "framer-motion";
 import { useSearchParams, Link } from "react-router-dom";
 import ItemLike from "./../html/components/ItemLike";
 import StarRating from "./../html/components/StartsRating";
+import { useContext } from "react";
+import { ItemContext } from "../context/itemsContext";
 
 const SearchResults = ({ items }) => {
   const [params] = useSearchParams();
   const query = params.get("q");
-
+  const { cartItems, setCartItems } = useContext(ItemContext);
   if (!items) return <p>Loading items...</p>;
 
   const filtered = items.filter((item) =>
@@ -26,6 +28,14 @@ const SearchResults = ({ items }) => {
     hidden: { opacity: 0, scale: 0.95 },
     show: { opacity: 1, scale: 1 },
     exit: { opacity: 0, scale: 0.95 },
+  };
+
+      const handleAddToCart = (item) => {
+    setCartItems([
+      ...cartItems,
+      { id: item.id, name: item.name, price: item.price, quantity: 1, color: item.colours[0], size: item.sizes[0]},
+    ]);
+
   };
 
   return (
@@ -59,7 +69,7 @@ const SearchResults = ({ items }) => {
                 <img src={item.image} alt="" />
               </div>
               </Link>
-              <button className="add-btn">Add To Cart</button>
+              <button className="add-btn" onClick={()=>handleAddToCart(item)}>Add To Cart</button>
             </div>
             <h2>{item.name}</h2>
             <div className="card-price">
