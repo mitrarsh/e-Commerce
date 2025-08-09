@@ -4,7 +4,6 @@ import { useAuth } from "../context/authContext";
 import { ItemContext } from "../context/itemsContext";
 
 const Login = () => {
-  const { info, setInfo, sendInfo } = useContext(ItemContext);
   const { currentUser, setCurrentUser } = useAuth();
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -25,9 +24,9 @@ const Login = () => {
     }
 
     setCurrentUser(user);
-    console.log("user:", user);
-    console.log("JSON.stringify(user):", JSON.stringify(user));
     localStorage.setItem("currentUser", JSON.stringify(user));
+
+    console.log(currentUser)
 
     const token = "fake-jwt-" + Math.random().toString(36).substring(2);
     localStorage.setItem("token", token);

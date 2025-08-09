@@ -7,6 +7,25 @@ export default function ItemContextProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
   const [info, setInfo] = useState([]);
 
+  useEffect(() => {
+   const addToUserCart = () => {
+      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      if (!currentUser) {
+        return;
+      }
+      const index = users.findIndex((user) => user.id === currentUser.id);
+      if (index !== -1) {
+        const updatedUser = { ...users[index], cart: cartItems };
+        const updatedUsers = [...users];
+        updatedUsers[index] = updatedUser;
+        localStorage.setItem("users", JSON.stringify(updatedUsers));
+        localStorage.setItem("currentUser", JSON.stringify(updatedUser));
+      }
+    };
+    addToUserCart();
+  }, [cartItems]);
+
   const itemCategories = [
     { name: "Woman's Fashion" },
     { name: "Men's Fashion" },
@@ -109,25 +128,22 @@ export default function ItemContextProvider({ children }) {
     fetchItems();
   }, []);
 
-
-    async function sendInfo(info) {
-      try {
-        const response = await fetch("http://localhost:3000/info", {
-          method: "POST",
-          body: JSON.stringify({ info }),
-          headers: { "content-type": "application/json" },
-        });
-        const resData = await response.json();
-        if (!response.ok) {
-          throw new Error("Error sending");
-        }
-        setInfo(resData);
-      } catch (error) {
-        console.log("Error sending data", error);
+  async function sendInfo(info) {
+    try {
+      const response = await fetch("http://localhost:3000/info", {
+        method: "POST",
+        body: JSON.stringify({ info }),
+        headers: { "content-type": "application/json" },
+      });
+      const resData = await response.json();
+      if (!response.ok) {
+        throw new Error("Error sending");
       }
+      setInfo(resData);
+    } catch (error) {
+      console.log("Error sending data", error);
     }
-  
-  
+  }
 
   return (
     <ItemContext.Provider

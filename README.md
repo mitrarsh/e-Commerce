@@ -1,5 +1,5 @@
  E-Commerce Web App
-A fully responsive modern e-commerce website built with [React.js], featuring product browsing, cart functionality, user authentication, and integration with a mock backend.
+A modern e-commerce website built with [React.js], featuring product browsing, cart functionality, user authentication, and integration with a mock backend.
 
 ![Preview](public/assets/images/icons/preview.svg)
 
@@ -25,7 +25,6 @@ A fully responsive modern e-commerce website built with [React.js], featuring pr
 
 
 🚀 Features
--Responsive UI (Mobile / Tablet / Desktop)
 
 -Product Search
 
