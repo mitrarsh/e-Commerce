@@ -11,6 +11,10 @@ const{cartItems: contextCartItems} = useContext(ItemContext);
     ? currentUser.cart || []
     : contextCartItems || [];
 
+  const uniqueCartItems= cartItems.reduce((acc, cur)=>{
+  const isRepeatative= acc.find(i=>i.id===cur.id); 
+  if (isRepeatative) {isRepeatative.quantity+=1} else {acc.push({...cur , quantity:1})}; return acc;
+  },[])
 
 
   return (
@@ -26,7 +30,7 @@ const{cartItems: contextCartItems} = useContext(ItemContext);
               <div>Quantity</div>
               <div>Subtotal</div>
             </div>
-            {cartItems.map((item) => (
+            {uniqueCartItems.map((item) => (
               <div className="cart-section" key={item.id}>
                 <div className="cart-item-pic">
                   <img src={item.image} style={{ width: "5rem" }} />
