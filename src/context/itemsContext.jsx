@@ -2,9 +2,12 @@ import { createContext, useEffect, useState } from "react";
 
 export const ItemContext = createContext({ items: [] });
 export default function ItemContextProvider({ children }) {
+
+const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
   const [items, setItems] = useState([]);
   const [likedItems, setLikedItems] = useState([]);
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(currentUser?.cart||[]);
   const [info, setInfo] = useState([]);
 
   useEffect(() => {
