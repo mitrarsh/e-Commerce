@@ -17,6 +17,7 @@ import SignUp, { action as authAction, checkAuthLoader, checkLoggedinLoader } fr
 import UserDashboard from "./pages/UserAccount";
 import Wishlist from './pages/Wishlist';
 import Category from "./pages/Category";
+import Cart from './pages/cart';
 
 const items = itemsData.items;
 const queryClient = new QueryClient();
@@ -39,6 +40,7 @@ const router = createBrowserRouter([
       },
       {path: "/search-results", element: <SearchResults items={items}/>,},
       {path: "/wishlist", element: <Wishlist items={items}/>,},
+      {path: "/cart", element: <Cart items={items}/>,},
 
     ],
   },

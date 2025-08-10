@@ -62,9 +62,7 @@ const Category = ({ items }) => {
             <div className="cover">
               <ItemLike item={item} />
               <Link to={`/products/${item.id}`}>
-              <div className="icon icon-whitebg cover-icon cover-icon-quick-view">
-                <img src="src\assets\icons\Quick View.svg" alt="" />
-              </div>
+
               <div className="cover-tag tag-discount">-{item.discount}</div>
               <div className="cover-image">
                 <img src={item.image} alt="" />

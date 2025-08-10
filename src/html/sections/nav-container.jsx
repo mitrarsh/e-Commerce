@@ -165,7 +165,7 @@ const NavContainer = ({ onDeleteFromCart }) => {
                 exit={{ y: -30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
               >
-                <h3>My Cart</h3>
+                <Link to={"/cart"}><h3>My Cart</h3></Link>
                 {cartItems.length === 0 ? (
                   <p className="empty-cart">Your cart is empty</p>
                 ) : (
