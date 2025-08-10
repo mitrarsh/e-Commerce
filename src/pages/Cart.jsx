@@ -11,10 +11,12 @@ const{cartItems: contextCartItems} = useContext(ItemContext);
     ? currentUser.cart || []
     : contextCartItems || [];
 
+
+
   return (
     <div>
       <div className="cart-page">
-        {cartItems.length === 0 ? (
+        {uniqueCartItems.length === 0 ? (
           <div className="emty-msg">Your cart is empty</div>
         ) : (
           <>
@@ -26,7 +28,7 @@ const{cartItems: contextCartItems} = useContext(ItemContext);
             </div>
             {cartItems.map((item) => (
               <div className="cart-section" key={item.id}>
-                <div className="cart-item">
+                <div className="cart-item-pic">
                   <img src={item.image} style={{ width: "5rem" }} />
                   <span>{item.name}</span>
                 </div>

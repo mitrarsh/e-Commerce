@@ -4,13 +4,10 @@ import AllProducts from "../html/sections/AllProducts";
 import Bestseller from "../html/sections/bestseller";
 import BoomboxBilboard from "../html/sections/BoomboxBilboard";
 import CategoriesSection from "../html/sections/categories-section";
-import Footer from "../html/sections/Footer";
-import NavContainer from "../html/sections/nav-container";
 import NewArrivalBilboard from "../html/sections/NewArrivalBilboard";
 import OnsaleSection from "../html/sections/onsales-section";
 import OurServices from "../html/sections/OurServices";
 import ProductCategories from "../html/sections/ProductCategories";
-import TopHeader from "../html/sections/top-header";
 import CountDownTimer from "./../html/components/timer";
 
 const HomePage = () => {
@@ -19,10 +16,17 @@ const HomePage = () => {
   const handleAddToCart = (item) => {
     setCartItems([
       ...cartItems,
-      { id: item.id, name: item.name, price: item.price, quantity: 1, color: item.colours[0], size: item.sizes[0]},
+      {
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        quantity: 1,
+        color: item.colours[0],
+        size: item.sizes[0],
+        image: item.image,
+      },
     ]);
   };
-
 
   const now = new Date();
   const salesTargetTime = new Date(
@@ -42,7 +46,6 @@ const HomePage = () => {
 
   return (
     <div>
-
       <main className="main-content">
         <CategoriesSection />
         <OnsaleSection
@@ -105,7 +108,6 @@ const HomePage = () => {
         <NewArrivalBilboard />
         <OurServices />
       </main>
-
     </div>
   );
 };

@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
-import { useSearchParams, Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useSearchParams } from "react-router-dom";
+import { ItemContext } from "../context/itemsContext";
 import ItemLike from "./../html/components/ItemLike";
 import StarRating from "./../html/components/StartsRating";
-import { useContext } from "react";
-import { ItemContext } from "../context/itemsContext";
 
 const SearchResults = ({ items }) => {
   const [params] = useSearchParams();
@@ -30,12 +30,19 @@ const SearchResults = ({ items }) => {
     exit: { opacity: 0, scale: 0.95 },
   };
 
-      const handleAddToCart = (item) => {
+  const handleAddToCart = (item) => {
     setCartItems([
       ...cartItems,
-      { id: item.id, name: item.name, price: item.price, quantity: 1, color: item.colours[0], size: item.sizes[0]},
+      {
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        quantity: 1,
+        color: item.colours[0],
+        size: item.sizes[0],
+        image: item.image,
+      },
     ]);
-
   };
 
   return (
@@ -61,15 +68,17 @@ const SearchResults = ({ items }) => {
             <div className="cover">
               <ItemLike item={item} />
               <Link to={`/products/${item.id}`}>
-              <div className="icon icon-whitebg cover-icon cover-icon-quick-view">
-                <img src="src\assets\icons\Quick View.svg" alt="" />
-              </div>
-              <div className="cover-tag tag-discount">-{item.discount}</div>
-              <div className="cover-image">
-                <img src={item.image} alt="" />
-              </div>
+                <div className="icon icon-whitebg cover-icon cover-icon-quick-view">
+                  <img src="src\assets\icons\Quick View.svg" alt="" />
+                </div>
+                <div className="cover-tag tag-discount">-{item.discount}</div>
+                <div className="cover-image">
+                  <img src={item.image} alt="" />
+                </div>
               </Link>
-              <button className="add-btn" onClick={()=>handleAddToCart(item)}>Add To Cart</button>
+              <button className="add-btn" onClick={() => handleAddToCart(item)}>
+                Add To Cart
+              </button>
             </div>
             <h2>{item.name}</h2>
             <div className="card-price">

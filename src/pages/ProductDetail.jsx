@@ -1,17 +1,10 @@
-import { useContext, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { ItemContext } from "../context/itemsContext";
-import StarRating from "./../html/components/StartsRating";
-import { Link } from "react-router-dom";
 import ItemLike from "../html/components/ItemLike";
-import { useEffect } from "react"; 
-import {useDispatch} from "react-redux";
-import { useSelector } from "react-redux";
-
+import StarRating from "./../html/components/StartsRating";
 
 const ProductDetail = () => {
-
-
   const { id } = useParams();
   const { items, cartItems, setCartItems } = useContext(ItemContext);
 
@@ -28,16 +21,15 @@ const ProductDetail = () => {
   //   dispatch({ type: 'decrement' });
   // }
 
-
-useEffect(() => {
-  setActiveIndex(0);
-  setFade(false);
-  setClickedNegative(false);
-  setClickedPositive(false);
-  setItemColor(item?.colours?.[0] ?? null);
-  setItemSize(item?.sizes?.[0] ?? null);
-  setQuantity(0);
-}, [id]);
+  useEffect(() => {
+    setActiveIndex(0);
+    setFade(false);
+    setClickedNegative(false);
+    setClickedPositive(false);
+    setItemColor(item?.colours?.[0] ?? null);
+    setItemSize(item?.sizes?.[0] ?? null);
+    setQuantity(0);
+  }, [id]);
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [fade, setFade] = useState(false);
@@ -61,47 +53,48 @@ useEffect(() => {
   const { setLikedItems, likedItems } = useContext(ItemContext);
   const isLiked = likedItems.some((i) => i.id === item.id);
 
-
   const handleLike = () => {
     !isLiked
       ? setLikedItems([...likedItems, item])
       : setLikedItems(likedItems.filter((i) => i.id !== item.id));
-      };
+  };
 
-  const [itemColor, setItemColor] = useState(item.colours ? item.colours[0]: null);
-  const [itemSize, setItemSize] = useState(item.sizes ? item.sizes[0]: null);
+  const [itemColor, setItemColor] = useState(
+    item.colours ? item.colours[0] : null
+  );
+  const [itemSize, setItemSize] = useState(item.sizes ? item.sizes[0] : null);
   const [quantity, setQuantity] = useState(0);
 
-      
   const handleAddToCart = (item) => {
-  if (quantity < 1) return;
+    if (quantity < 1) return;
 
-  const existingItemIndex = cartItems.findIndex(
-    (i) => i.id === item.id && i.color === itemColor && i.size === itemSize
-  );
+    const existingItemIndex = cartItems.findIndex(
+      (i) => i.id === item.id && i.color === itemColor && i.size === itemSize
+    );
 
-  if (existingItemIndex !== -1) {
-    const updatedCart = cartItems.map((i, index) => {
-      if (index === existingItemIndex) {
-        return { ...i, quantity: i.quantity + quantity };
-      }
-      return i;
-    });
-    setCartItems(updatedCart);
-  } else {
-    const newItem = {
-      id: item.id,
-      name: item.name,
-      price: item.price,
-      color: itemColor,
-      size: itemSize,
-      quantity: quantity,
-    };
-    setCartItems([...cartItems, newItem]);
-  }
-};
+    if (existingItemIndex !== -1) {
+      const updatedCart = cartItems.map((i, index) => {
+        if (index === existingItemIndex) {
+          return { ...i, quantity: i.quantity + quantity };
+        }
+        return i;
+      });
+      setCartItems(updatedCart);
+    } else {
+      const newItem = {
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        color: itemColor,
+        size: itemSize,
+        quantity: quantity,
+        image: item.image,
+      };
+      setCartItems([...cartItems, newItem]);
+    }
+  };
 
-  console.log(cartItems)
+  console.log(cartItems);
   return (
     <div className="main-content">
       <div className="product-detail">
@@ -141,12 +134,17 @@ useEffect(() => {
             {item.colours && item.colours.length > 0 && (
               <div className="all-products-colors">
                 {item.colours.map((color, index) => (
-                  <div className={`colorBorder ${itemColor === color ? "clicked" : ""}`} key={index}>
-                    <div
+                  <div
+                    className={`colorBorder ${
+                      itemColor === color ? "clicked" : ""
+                    }`}
                     key={index}
-                    className="color-box itemColor"
-                    style={{ backgroundColor: color }}
-                    onClick={() => setItemColor(color)}
+                  >
+                    <div
+                      key={index}
+                      className="color-box itemColor"
+                      style={{ backgroundColor: color }}
+                      onClick={() => setItemColor(color)}
                     ></div>
                   </div>
                 ))}
@@ -158,11 +156,18 @@ useEffect(() => {
               <div className="all-products-colors">
                 <h1>Size: </h1>
                 {item.sizes.map((size, index) => (
-                  <div 
-                    className={`size sizeBox ${itemSize === size ? "clicked" : ""}`} 
-                    key={index} 
-                    onClick={() => setItemSize(size)}>
-                    <p className={`size-p ${itemSize === size? "clicked" : ""}`}>{size}</p>
+                  <div
+                    className={`size sizeBox ${
+                      itemSize === size ? "clicked" : ""
+                    }`}
+                    key={index}
+                    onClick={() => setItemSize(size)}
+                  >
+                    <p
+                      className={`size-p ${itemSize === size ? "clicked" : ""}`}
+                    >
+                      {size}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -177,10 +182,12 @@ useEffect(() => {
                   setTimeout(() => {
                     setClickedNegative(false);
                   }, 100);
-                  setQuantity((prev)=> prev>1? prev - 1 : 0);
+                  setQuantity((prev) => (prev > 1 ? prev - 1 : 0));
                 }}
               >
-                <p className={`increment-p ${clickedNegative ? "clicked" : ""}`}>
+                <p
+                  className={`increment-p ${clickedNegative ? "clicked" : ""}`}
+                >
                   -
                 </p>
               </div>
@@ -191,24 +198,38 @@ useEffect(() => {
                   setClickedPositive(true);
                   setTimeout(() => {
                     setClickedPositive(false);
-                    setQuantity((prev)=> prev + 1);
+                    setQuantity((prev) => prev + 1);
                   }, 100);
                 }}
               >
-                <p className={`increment-p ${clickedPositive ? "clicked" : ""}`}>
+                <p
+                  className={`increment-p ${clickedPositive ? "clicked" : ""}`}
+                >
                   +
                 </p>
               </div>
             </div>
-            <button 
+            <button
               className="btn red-btn product-detail-content-btn"
-              onClick={() => {quantity && handleAddToCart(item); setQuantity(0);}}
+              onClick={() => {
+                quantity && handleAddToCart(item);
+                setQuantity(0);
+              }}
               disabled={quantity === 0}
             >
               Buy Now
             </button>
             <div className="size">
-              <div className="likeBox" onClick={handleLike}><img src={isLiked ? "/assets/images/icons/fullheart.svg" : "/assets/images/icons/heart.svg"} alt="" /></div>
+              <div className="likeBox" onClick={handleLike}>
+                <img
+                  src={
+                    isLiked
+                      ? "/assets/images/icons/fullheart.svg"
+                      : "/assets/images/icons/heart.svg"
+                  }
+                  alt=""
+                />
+              </div>
             </div>
           </div>
           <div className="product-detail-content-services">
@@ -230,41 +251,41 @@ useEffect(() => {
         </div>
       </div>
 
-          <div className="block-heading">
-            <div className="block-block"></div>
-            <h4>Related Item</h4>
-          </div>
-          <div className="block-title">
-            {visibleItems.map((item) => (
-              <div key={item.id} className=" product-detail-relatedItems">
-                <div className="item-card">
-                  <div className="cover">
-                    <ItemLike item={item} />
-                    <Link to={`/products/${item.id}`}>
-                      <div className="icon icon-whitebg cover-icon cover-icon-quick-view">
-                        <img src="/assets/images/icons/Quick View.svg" alt="" />
-                      </div>
-                    <div className="cover-image">
-                      <img src={item.image} alt="" />
-                    </div>
-                    </Link>
+      <div className="block-heading">
+        <div className="block-block"></div>
+        <h4>Related Item</h4>
+      </div>
+      <div className="block-title">
+        {visibleItems.map((item) => (
+          <div key={item.id} className=" product-detail-relatedItems">
+            <div className="item-card">
+              <div className="cover">
+                <ItemLike item={item} />
+                <Link to={`/products/${item.id}`}>
+                  <div className="icon icon-whitebg cover-icon cover-icon-quick-view">
+                    <img src="/assets/images/icons/Quick View.svg" alt="" />
                   </div>
-                  <h2>{item.name}</h2>
-                  <div className="card-price">
-                    <p className="price">${item.price}</p>
-                    {item.originalPrice && (
-                      <p className="prev-price">${item.originalPrice}</p>
-                    )}
+                  <div className="cover-image">
+                    <img src={item.image} alt="" />
                   </div>
-                  <div className="rating">
-                    <StarRating rating={item.rating} />
-                  </div>
-
-                </div>
+                </Link>
               </div>
-            ))}
-          </div> 
-        </div>
-   )}
-  
+              <h2>{item.name}</h2>
+              <div className="card-price">
+                <p className="price">${item.price}</p>
+                {item.originalPrice && (
+                  <p className="prev-price">${item.originalPrice}</p>
+                )}
+              </div>
+              <div className="rating">
+                <StarRating rating={item.rating} />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 export default ProductDetail;
